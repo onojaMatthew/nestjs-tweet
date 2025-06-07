@@ -15,8 +15,8 @@ export class UsersController {
   }
 
   @Get(":id")
-  getUserById(@Param("id?", ) param: GetUserParamDto) {
-    return this.userService.getUserById(param.id);
+  getUserById(@Param("id?") id: Number) {
+    return this.userService.getUserById(id);
   }
 
   @Get(":id/:name/:gender")
