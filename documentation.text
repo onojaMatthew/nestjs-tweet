@@ -1,0 +1,76 @@
+REST API is REpresentation State Transfer(REST) API, 
+and it is a software architectural style that defines how clients (like Web browsers or mobile apps)
+can interact with servers to retrieve and manupulate data.
+
+APIs can be of different types, name:
+
+1.  REST API
+    An api is called REST API when that API folows the rules of REST API
+
+    Six principles that an API a REST API are:
+
+    a.  Client-Server Architecture
+    b.  Stateless
+    c.  Cacheable
+    d.  Layered System
+    e.  Uniform Interface
+    f.  Code on Demand (optional)
+
+        i.  Client-Server Architecture: A REST API is based on Client-Server architecture where you
+            have the client and you also have the server where the data exchange happens.
+        ii. Stateless: this means each requested is treated independently, and the server does not 
+            maintain any session state for the client.
+        iii. Cacheable: Responses from a REST API can be cache by the client or intermediate server
+            to improve performance.
+        iv. Layered System: REST API be organized into layers, allowing for modularity and flexibility.
+            This makes it easier to add or remove functionality without affecting the entire system.
+        v.  Uniform Interface: REST APIs use a standardized set HTTP methods to perform different
+            operations on the resource. This provides a consistent and predictable way for clients to 
+            interact with the API.
+        vi. Code on Demand is a REST API principle that allows the client to dynamically download and 
+            execute code on the server. This enables client to extend the functionality of server without
+            requiring a full application update.
+        
+
+2.  Pipe
+    Pipes in Nest JS are functions that tansform or validate data before it reaches a controller method.
+    They are used to clean, sanitize, or convert data to a specific format, ensuring that the data received 
+    by the controller is in a suitable state for further processing.
+
+    a.  Data Validation: Pipes can validate incoming data to ensure it adheres to specific requirements, 
+        such as data types, lenght, or format. This helps prevent errors and improves data quality.
+    b.  Data Transformation: Pipes can transform data into a different format or structure, making it 
+        more suitable for the controllers logic. For example, you can use pipes to parse jSON strings, 
+        convert data types, or format dates.
+    c.  Data Sanitization: Pipes can sanitize data to remove potentially harmful content, such as HTML 
+        tags or malicious scripts. This helps protect application from security vulnerabilities.
+
+3.  DTO
+    DTO stands for Data Transfer Object and it is a simple class that is used to represent data that is
+    being transferred between different layers of an application, such as the controllers, service and repository
+
+    DTOs are often used to decouple the different layers of the appliation to make the code more readable 
+    and maintainable.
+
+4.  Dependency injection: is a software design pattern that involves passing dependencies (objects or services) 
+    into an object rather than the object creating them iteself. This promotes loose coupling, making the code 
+    more modular, testable, and maintainable.
+
+    WHY USE DEPENDENCY INJECTION IN NEST JS?
+    
+    1.  Modularity: DI encourages breaking down applications into smaller, reusable modules, improving code 
+        organization and maintainablility.
+    2.  Testability: By injecting dependencies, you can easily mock or stub them during testing, isolating 
+        the component under test and simplifiying testing procedures.
+    3.  Reusablility: DI allows you to reuse components across different parts of you application, promoting 
+        code effficiency and reducing redundancy.
+    4.  Maintainablility: DI makes it easier to modify and extend you application without ffecting existing code.
+    5.  Configurability: DI enables you to configure depnedencies dynamically, allowing for customization adn 
+         flexibility.
+
+    TYPES OF DEPENDENCY INJECTION
+
+    a.  Intra-modular: refers to a dependency between components within the same module in Nest JS.
+    b.  Inter-modular: occurs when a component in one module depends on a component in another module.
+    c.  Circular: arises when two or more modules or components have a direct or indirect dependency 
+        on each other, forming a circle.
