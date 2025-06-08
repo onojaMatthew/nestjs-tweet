@@ -74,3 +74,6 @@ APIs can be of different types, name:
     b.  Inter-modular: occurs when a component in one module depends on a component in another module.
     c.  Circular: arises when two or more modules or components have a direct or indirect dependency 
         on each other, forming a circle.
+
+5.  REPOSITORY PATTERN: this is a design pattern that acts as an intermediate between your business logic
+    and the ORM. It provides an abstraction layer for accessing and manipulating data in the database. 
