@@ -13,11 +13,11 @@ export class UsersService {
     return this.users;
   }
 
-  getUserById(id: number) {
+  getUserById(id: Number) {
     return this.users.find(user => user.id === id);
   }
 
-  createUser(user: { id: number, name: string, email: string, isMarried: boolean, gender: string }) {
+  createUser(user: { id: Number, name: string, email: string, isMarried: boolean, gender: string }) {
     const newUser = this.users.push(user);
     return newUser;
   }

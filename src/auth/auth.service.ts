@@ -1,0 +1,10 @@
+import { Injectable } from '@nestjs/common';
+import { UsersService } from 'src/users/users.service';
+
+@Injectable()
+export class AuthService {
+  constructor(private readonly userService: UsersService) {}
+  login(email: string, password: string) {
+    const userExists = this.userService.users.find(user => user.email === email);
+  }
+}
