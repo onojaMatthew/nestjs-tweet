@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Profile } from "src/profile/profile.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -7,17 +8,10 @@ export class User {
 
   @Column({
     type: "varchar",
-    length: 100,
+    length: 24,
     nullable: false
   })
-  firstName: string
-
-  @Column({
-    type: "varchar",
-    length: 100,
-    nullable: false
-  })
-  lastName: string
+  username: string
 
   @Column({
     type: "varchar",
@@ -27,6 +21,10 @@ export class User {
   })
   email: string
 
+  @OneToOne(() => Profile)
+  @JoinColumn()
+  profile: Profile
+
   @Column({
     type: "varchar",
     nullable: false,
@@ -35,10 +33,12 @@ export class User {
   })
   password: string
 
-  @Column({
-    type: "varchar",
-    nullable: true,
-    length: 8
-  })
-  gender: string
+  @CreateDateColumn()
+  createdAt: Date
+
+  @UpdateDateColumn()
+  updatedAt: Date
+
+  @DeleteDateColumn()
+  deletedAt: Date
 }

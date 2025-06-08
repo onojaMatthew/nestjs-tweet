@@ -9,8 +9,7 @@ export class UsersController {
   constructor(private userService: UsersService) {}
 
   @Get()
-  getUsers(@Query("limit", new DefaultValuePipe(10), ParseIntPipe, ) limit: number, @Query("page", new DefaultValuePipe(1), ParseIntPipe) page: number) {
-    console.log(limit, page)
+  getUsers() {
     return this.userService.getUsers();
   }
 
@@ -28,7 +27,7 @@ export class UsersController {
 
   @Post()
   createUser(@Body() user: CreateUserDto) {
-    this.userService.createUser(user);
+    this.userService.createUser(user)
     return `New user was created successfully!`
   }
 

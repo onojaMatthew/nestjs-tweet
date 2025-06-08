@@ -1,28 +1,38 @@
 import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { AuthService } from 'src/auth/auth.service';
+import { Repository } from 'typeorm';
+import { User } from './user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { CreateUserDto } from './dtos/create-user.dto';
 
 @Injectable()
 export class UsersService {
-  constructor(@Inject(forwardRef(() => AuthService)) private readonly authService: AuthService) {}
-  users: { firstName: string, lastName: string, email: string, password: string, gender: string }[] = [
-    { firstName: "Onyi", lastName: "Gabriel", email: "onyi@gmail.com", gender: "female", password: "onyi" },
-    { firstName: "Mary", lastName: "Anthony", email: "mary@gmail.com", gender: "female", password: "mary" },
-    { firstName: "Grace", lastName: "Anthony",  email: "grace@gmail.com", gender: "female", password: "grace" },
-    { firstName: "John", lastName: "Obute",  email: "john@gmail.com", gender: "male", password: "john" }
-  ]
-
+  constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>
+  ) {}
+  
   getUsers() {
-    if (this.authService.isAuthenticated) {
-      return this.users;
-    }
+    return this.userRepository.find();
   }
 
   getUserById(id: Number) {
-    // return this.users.find(user => user.id === id);
+    // return this.userRepository.findOneBy({  where: })
   }
 
-  createUser(user: { email: string, gender: string, password: string, firstName: string, lastName: string }) {
-    const newUser = this.users.push(user);
+  public async createUser(userDto: CreateUserDto) {
+    const user = await this.userRepository.findOne({
+      where: {
+        email: userDto.email
+      }
+    });
+
+    if (user) {
+      return "The user with email already exists!";
+    }
+
+    let newUser = this.userRepository.create(userDto);
+    newUser = await this.userRepository.save(newUser);
     return newUser;
   }
 }

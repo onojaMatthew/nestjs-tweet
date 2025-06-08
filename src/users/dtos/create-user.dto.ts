@@ -1,4 +1,5 @@
 import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator"
+import { CreateProfileDto } from "src/profile/dto/create-profile.dto"
 
 export class CreateUserDto {
   
@@ -17,6 +18,14 @@ export class CreateUserDto {
   @IsNotEmpty()
   @MaxLength(100)
   email: string
+
+  @IsString()
+  @IsNotEmpty()
+  @MaxLength(24)
+  username: string
+
+  @IsOptional()
+  profile?: CreateProfileDto
 
   @IsString({message: "Gender field must be a string"})
   @IsOptional()
