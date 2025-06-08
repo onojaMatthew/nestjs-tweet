@@ -1,4 +1,5 @@
 import { Injectable } from "@nestjs/common";
+import { CreateUserDto } from "src/users/dtos/create-user.dto";
 import { UsersService } from "src/users/users.service";
 
 @Injectable()
@@ -14,8 +15,7 @@ export class TweetService {
     const tweets = this.tweets.filter((tweet) => tweet.userId === userId)
     const response = tweets.map(t => {
       return {
-        id: user?.id,
-        name: user?.name,
+        user,
         text: t.text,
         date: t.date
       }

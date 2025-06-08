@@ -4,11 +4,11 @@ import { AuthService } from 'src/auth/auth.service';
 @Injectable()
 export class UsersService {
   constructor(@Inject(forwardRef(() => AuthService)) private readonly authService: AuthService) {}
-  users: { id: Number, name: string, email: string, isMarried: boolean, gender: string }[] = [
-    { id: 1, name: "Onyi", email: "onyi@gmail.com", isMarried: true, gender: "female" },
-    { id: 2, name: "Mary", email: "mary@gmail.com", isMarried: true, gender: "female" },
-    { id: 3, name: "Grace", email: "grace@gmail.com", isMarried: false, gender: "female" },
-    { id: 4, name: "John", email: "john@gmail.com", isMarried: false, gender: "male" }
+  users: { firstName: string, lastName: string, email: string, password: string, gender: string }[] = [
+    { firstName: "Onyi", lastName: "Gabriel", email: "onyi@gmail.com", gender: "female", password: "onyi" },
+    { firstName: "Mary", lastName: "Anthony", email: "mary@gmail.com", gender: "female", password: "mary" },
+    { firstName: "Grace", lastName: "Anthony",  email: "grace@gmail.com", gender: "female", password: "grace" },
+    { firstName: "John", lastName: "Obute",  email: "john@gmail.com", gender: "male", password: "john" }
   ]
 
   getUsers() {
@@ -18,10 +18,10 @@ export class UsersService {
   }
 
   getUserById(id: Number) {
-    return this.users.find(user => user.id === id);
+    // return this.users.find(user => user.id === id);
   }
 
-  createUser(user: { id: Number, name: string, email: string, isMarried: boolean, gender: string }) {
+  createUser(user: { email: string, gender: string, password: string, firstName: string, lastName: string }) {
     const newUser = this.users.push(user);
     return newUser;
   }
