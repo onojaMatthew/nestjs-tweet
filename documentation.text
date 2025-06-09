@@ -77,3 +77,11 @@ APIs can be of different types, name:
 
 5.  REPOSITORY PATTERN: this is a design pattern that acts as an intermediate between your business logic
     and the ORM. It provides an abstraction layer for accessing and manipulating data in the database. 
+
+6.  CASCADING: Cascading in TypeORM (used often with NestJS) is a feature that authomatically performs related 
+    operations (like saving, updating, or deleting) on associated entities when you perform those operations on 
+    the perent entity.
+
+7.  EAGER LOADING: in TypeORM means that when you feth an entity from the database, its related entities 
+    (defined in relationships such as @oneToMany, @ManyToOne, etc) are automatically loaded alongside it without
+    you having to explicitly specify it in your query.

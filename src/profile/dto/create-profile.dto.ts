@@ -17,7 +17,7 @@ export class CreateProfileDto {
   @IsString()
   @MaxLength(24)
   @IsOptional()
-  username: string;
+  username?: string;
 
   @IsString({ message: 'Gender field must be a string' })
   @IsOptional()
@@ -30,9 +30,9 @@ export class CreateProfileDto {
 
   @IsString()
   @IsOptional()
-  bio: string
+  bio?: string
 
   @IsString()
   @IsOptional()
-  profileImage: string
+  profileImage?: string
 }

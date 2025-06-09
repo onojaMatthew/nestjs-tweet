@@ -2,18 +2,6 @@ import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLeng
 import { CreateProfileDto } from "src/profile/dto/create-profile.dto"
 
 export class CreateUserDto {
-  
-  @IsString({message: "First name must be of string characters"})
-  @IsNotEmpty({ message: "First name field is required"})
-  @MinLength(3, { message: "First name must be at least 3 characters long"})
-  firstName: string
-
-  @IsString({message: "Last name must be of string characters"})
-  @IsNotEmpty({ message: "Last name field is required"})
-  @MinLength(3, { message: "Last name must be at least 3 characters long"})
-  @MaxLength(100)
-  lastName: string
-
   @IsEmail()
   @IsNotEmpty()
   @MaxLength(100)
@@ -25,7 +13,7 @@ export class CreateUserDto {
   username: string
 
   @IsOptional()
-  profile?: CreateProfileDto
+  profile?: CreateProfileDto;
 
   @IsString({message: "Gender field must be a string"})
   @IsOptional()

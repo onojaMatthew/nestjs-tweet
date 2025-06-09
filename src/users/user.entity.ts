@@ -21,7 +21,10 @@ export class User {
   })
   email: string
 
-  @OneToOne(() => Profile)
+  @OneToOne(() => Profile, {
+    cascade: ["insert", "remove"],
+    eager: true
+  })
   @JoinColumn()
   profile: Profile
 
