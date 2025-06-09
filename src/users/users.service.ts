@@ -16,12 +16,16 @@ export class UsersService {
     private profileRepository: Repository<Profile>
   ) {}
   
-  getUsers() {
-    return this.userRepository.find();
+  public async getUsers() {
+    return await this.userRepository.find({
+      relations: {
+        profile: true
+      }
+    });
   }
 
-  getUserById(id: Number) {
-    // return this.userRepository.findOneBy({  where: })
+  public async getUserById(id: number) {
+    return await this.userRepository.findOneBy({ id })
   }
 
   public async createUser(userDto: CreateUserDto) {
@@ -29,5 +33,12 @@ export class UsersService {
     let user = this.userRepository.create(userDto);
 
     return await this.userRepository.save(user);
+  }
+
+  public async deleteUser(id: number) {
+    let user = await this.userRepository.delete(id);
+    console.log(user)
+    if (user.affected === 0) return "User not found";
+    return { deleted: true }
   }
 }

@@ -1,5 +1,6 @@
 import { Profile } from "src/profile/profile.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Tweet } from "src/tweet/tweet.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
 export class User {
@@ -21,11 +22,9 @@ export class User {
   })
   email: string
 
-  @OneToOne(() => Profile, {
+  @OneToOne(() => Profile, (profile) => profile.user, {
     cascade: ["insert", "remove"],
-    eager: true
   })
-  @JoinColumn()
   profile: Profile
 
   @Column({
@@ -43,5 +42,8 @@ export class User {
   updatedAt: Date
 
   @DeleteDateColumn()
-  deletedAt: Date
+  deletedAt: Date;
+
+  @OneToMany(() => Tweet, (tweet) => tweet.user)
+  tweets: Tweet[];
 }

@@ -85,3 +85,11 @@ APIs can be of different types, name:
 7.  EAGER LOADING: in TypeORM means that when you feth an entity from the database, its related entities 
     (defined in relationships such as @oneToMany, @ManyToOne, etc) are automatically loaded alongside it without
     you having to explicitly specify it in your query.
+
+8.  ONE TO MANY RELATION: this signifies that one row in one table will have a multiple related rows in second table. 
+    The opposite of one-to-many relation is many-to-one.
+
+9.  MANY TO ONE RELATION: this relationship signifies that multiple rows in one table has a single related row in 
+    second table. The one-to-many & many-to-one relation always go hand in hand.
+
+    The foreign key column is always created on the table from where we have many-to-one relation

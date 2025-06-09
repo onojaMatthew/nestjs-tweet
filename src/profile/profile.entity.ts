@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "src/users/user.entity";
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Profile {
@@ -43,4 +44,8 @@ export class Profile {
     nullable: true
   })
   profileImage: string
+
+  @OneToOne(() => User, (user) => user.profile, { onDelete: "CASCADE" }) //Declare a one to one relattionship and point to the field in the user table that is reference in the Profile table. When a user is deleted, the corresponding profile should is deleted
+  @JoinColumn()
+  user: User
 }
