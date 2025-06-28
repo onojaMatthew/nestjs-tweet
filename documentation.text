@@ -93,3 +93,6 @@ APIs can be of different types, name:
     second table. The one-to-many & many-to-one relation always go hand in hand.
 
     The foreign key column is always created on the table from where we have many-to-one relation
+
+10. MANY TO MANY RELATION: this relationship signifies that multiple rows in first table has multple related rows in 
+    second table. And mulple rows in second table has multiple related rows in first table.

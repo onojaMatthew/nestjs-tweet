@@ -5,13 +5,16 @@ import { UsersService } from "src/users/users.service";
 import { Tweet } from "./tweet.entity";
 import { Repository } from "typeorm";
 import { CreateTweetDto } from "./dto/create-tweet.dto";
+import { Hashtag } from "src/hashtag/hashtag.entity";
+import { HashtagService } from "src/hashtag/hashtag.service";
 
 @Injectable()
 export class TweetService {
   constructor(
     @InjectRepository(Tweet)
-    private readonly tweetRepository: Repository<Tweet>,
-    private readonly userService: UsersService
+    private readonly tweetRepository: Repository<Tweet>,  
+    private readonly userService: UsersService,
+    private readonly hashtagService: HashtagService
   ) {}
   
   public async getTweets(userId: number) {
@@ -26,9 +29,15 @@ export class TweetService {
   }
 
   public async createTweet(createTweetDto: CreateTweetDto) {
-    let user = await this.userService.getUserById(createTweetDto.userId);
+    const user = await this.userService.getUserById(createTweetDto.userId);
     if (!user) return "User not found";
-    let tweet = await this.tweetRepository.create({...createTweetDto, user: user})
-    return await this.tweetRepository.save(tweet)
+  
+    const hashtagIds = createTweetDto.hashtags ?? [];
+    const hashtags = await this.hashtagService.fetchHashtags(hashtagIds); // should return Hashtag[]
+  
+    // const tweet = this.tweetRepository.create({ ...createTweetDto, user, hashtags});
+  
+    // return await this.tweetRepository.save(tweet);
   }
+  
 }
