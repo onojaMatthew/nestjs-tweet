@@ -1,5 +1,13 @@
-import { IsBoolean, IsEmail, IsNotEmpty, IsNumber, IsOptional, IsString, MaxLength, MinLength } from "class-validator"
-import { CreateProfileDto } from "src/profile/dto/create-profile.dto"
+import { IsBoolean,
+   IsEmail,
+   IsNotEmpty
+  , IsNumber,
+   IsOptional,
+   IsString,
+   MaxLength,
+   MinLength
+ } from "class-validator"
+import { CreateProfileDto } from "../../profile/dto/create-profile.dto"
 
 export class CreateUserDto {
   @IsEmail()

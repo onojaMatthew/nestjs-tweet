@@ -1,5 +1,5 @@
-import { Profile } from "src/profile/profile.entity";
-import { Tweet } from "src/tweet/tweet.entity";
+import { Profile } from "../profile/profile.entity";
+import { Tweet } from "../tweet/tweet.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
