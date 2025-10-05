@@ -9,6 +9,10 @@ import { HashtagModule } from '../hashtag/hashtag.module';
 @Module({
   controllers: [ TweetsController ],
   providers: [ TweetService],
-  imports: [UserModule, HashtagModule, TypeOrmModule.forFeature([Tweet])]
+  imports: [
+    UserModule, 
+    HashtagModule, 
+    TypeOrmModule.forFeature([Tweet]),
+  ]
 })
 export class TweetModule {}

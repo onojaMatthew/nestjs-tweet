@@ -3,17 +3,18 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "../users/dtos/create-user.dto";
 import { UsersService } from "../users/users.service";
 import { Tweet } from "./tweet.entity";
-import { Repository } from "typeorm";
+import { In, Repository } from "typeorm";
 import { CreateTweetDto } from "./dto/create-tweet.dto";
 import { Hashtag } from "../hashtag/hashtag.entity";
 import { HashtagService } from "../hashtag/hashtag.service";
 import { PaginationQueryDto } from "../common/pagination/dto/pagination-query.dto";
+import { UpdateTweetDto } from "./dto/update-tweet.dto";
 
 @Injectable()
 export class TweetService {
   constructor(
     @InjectRepository(Tweet)
-    private readonly tweetRepository: Repository<Tweet>,  
+    private readonly tweetRepository: Repository<Tweet>, 
     private readonly userService: UsersService,
     private readonly hashtagService: HashtagService
   ) {}
@@ -38,11 +39,14 @@ export class TweetService {
     if (!user) return "User not found";
   
     const hashtagIds = createTweetDto.hashtags ?? [];
-    const hashtags = await this.hashtagService.fetchHashtags(hashtagIds); // should return Hashtag[]
+    const hashtags = await this.hashtagService.fetchHashtags(hashtagIds); 
   
     const tweet = this.tweetRepository.create({ ...createTweetDto, user, hashtags});
   
     return await this.tweetRepository.save(tweet);
   }
-  
+
+  public async updateTweet(tweet: UpdateTweetDto) {}
+
+  public async deleteTweet(id: number) {}
 }

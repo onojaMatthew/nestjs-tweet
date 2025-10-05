@@ -16,7 +16,6 @@ export class UsersService {
 
     @InjectRepository(Profile)
     private profileRepository: Repository<Profile>,
-
     private readonly configService: ConfigService
   ) {}
   
