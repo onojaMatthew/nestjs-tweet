@@ -14,7 +14,7 @@ export class UsersController {
   }
 
   @Get(":id")
-  public getUserById(@Param("id?") id: number) {
+  public getUserById(@Param("id", ParseIntPipe) id: number) {
     return this.userService.getUserById(id);
   }
 
@@ -26,8 +26,7 @@ export class UsersController {
 
   @Post()
   public createUser(@Body() user: CreateUserDto) {
-    this.userService.createUser(user)
-    return `New user was created successfully!`
+    return this.userService.createUser(user)
   }
 
   @Patch()
