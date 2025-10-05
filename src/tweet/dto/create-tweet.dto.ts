@@ -14,6 +14,7 @@ export class CreateTweetDto {
   userId: number;
 
   @IsOptional()
+  @IsInt({ each: true })
   @IsArray()
   hashtags?: number[];
 }

@@ -96,3 +96,17 @@ APIs can be of different types, name:
 
 10. MANY TO MANY RELATION: this relationship signifies that multiple rows in first table has multple related rows in 
     second table. And mulple rows in second table has multiple related rows in first table.
+
+11. ENVIRONMENT VARIABLES: The environment variables are key-value pairs that store configuration settings.
+
+    In a Nest JS application, environment variables serve a crucial role in managing configurations across different 
+    environments (development, testing, production) without hardcoding sensitive information into the applications's 
+    source code.
+
+    ADVANTAGES
+    1.  SEPARATION of CONCERNS: Environment variables help separate configuratino from code, making applications more
+        maintainable.
+    2.  INCREASED SECURITY: They protect sensitive data from being exposed in your codebase.
+    3.  MAINTAINABILITY: When changes to configuratin is needed, it is much easier to change an environment variable, 
+        than it is to change values that are hard coded into the application.
+    4.  IMPROVED PORTABILITY: Applicatinos become more adaptable to different environments.

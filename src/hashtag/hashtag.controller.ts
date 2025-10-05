@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { CreateHashtagDto } from './dto/create-hashtag.dto';
 import { HashtagService } from './hashtag.service';
 
@@ -17,5 +17,15 @@ export class HashtagController {
   @Get()
   public fetchHashtags (hashtagIds: number[]) {
     return this.hashtagService.fetchHashtags(hashtagIds);
+  }
+
+  @Delete(":id")
+  public deleteHashtag(@Param("id", ParseIntPipe) id: number) {
+    return this.hashtagService.deleteHashtag(id);
+  }
+
+  @Delete("softdelete/:id")
+  public softDeleteHashtag(@Param("id", ParseIntPipe) id: number) {
+    return this.hashtagService.softDeleteHashtag(id);
   }
 }

@@ -25,7 +25,7 @@ export class Tweet {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToMany(() => Hashtag)
+  @ManyToMany(() => Hashtag, (hashtag) => hashtag.tweets)
   @JoinTable()
   hashtags: Hashtag[];
 
