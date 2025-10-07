@@ -1,6 +1,15 @@
 import { Hashtag } from "../hashtag/hashtag.entity";
 import { User } from "../users/user.entity";
-import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+  Column, 
+  CreateDateColumn, 
+  Entity, 
+  JoinTable, 
+  ManyToMany, 
+  ManyToOne, 
+  PrimaryGeneratedColumn, 
+  UpdateDateColumn 
+} from "typeorm";
 
 @Entity()
 export class Tweet {

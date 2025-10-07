@@ -1,6 +1,16 @@
 import { Profile } from "../profile/profile.entity";
 import { Tweet } from "../tweet/tweet.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { 
+  Column, 
+  CreateDateColumn, 
+  DeleteDateColumn, 
+  Entity, 
+  JoinColumn, 
+  OneToMany, 
+  OneToOne, 
+  PrimaryGeneratedColumn, 
+  UpdateDateColumn 
+} from "typeorm";
 
 @Entity()
 export class User {

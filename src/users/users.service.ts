@@ -1,4 +1,4 @@
-import { BadRequestException, forwardRef, HttpException, HttpStatus, Inject, Injectable, RequestTimeoutException } from '@nestjs/common';
+import { BadRequestException, forwardRef, HttpException, HttpStatus, Inject, Injectable, RequestTimeoutException, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from 'src/auth/auth.service';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
@@ -7,6 +7,7 @@ import { CreateUserDto } from './dtos/create-user.dto';
 import { Profile } from '../profile/profile.entity';
 import { ConfigService } from '@nestjs/config';
 import { UserAlreadyExistsException } from '../CustomException/user-already-exists.exception';
+import { HashingProvider } from '../auth/provider/hashing.provider';
 
 @Injectable()
 export class UsersService {
@@ -16,7 +17,10 @@ export class UsersService {
 
     @InjectRepository(Profile)
     private profileRepository: Repository<Profile>,
-    private readonly configService: ConfigService
+    private readonly configService: ConfigService,
+
+    @Inject(forwardRef(() => HashingProvider))
+    private readonly hashingProvider: HashingProvider
   ) {}
   
   public async getUsers() {
@@ -69,7 +73,10 @@ export class UsersService {
         throw new UserAlreadyExistsException("email", userDto.email)
       }
 
-      let user = this.userRepository.create(userDto);
+      let user = this.userRepository.create({
+        ...userDto,
+        password: await this.hashingProvider.hashPassword(userDto.password)
+      });
 
       return await this.userRepository.save(user);
     } catch (error) {
@@ -95,5 +102,20 @@ export class UsersService {
       }
       console.log(error.code)
     }
+  }
+
+  public async findUserByUsername(username: string) {
+    let user: User | null = null;
+    try {
+      user = await this.userRepository.findOneBy({ username });
+      
+    } catch (error) {
+      throw new RequestTimeoutException(error, {
+        description: "User with the given username not found"
+      })
+    }
+
+    if (!user) throw new UnauthorizedException("User not found");
+    return user;
   }
 }

@@ -24,10 +24,10 @@ export class UsersController {
     return this.userService.getUserById(+id);
   }
 
-  @Post()
-  public createUser(@Body() user: CreateUserDto) {
-    return this.userService.createUser(user)
-  }
+  // @Post()
+  // public createUser(@Body() user: CreateUserDto) {
+  //   return this.userService.createUser(user)
+  // }
 
   @Patch()
   public updateUser(@Body() user: UpdateUserDto) {

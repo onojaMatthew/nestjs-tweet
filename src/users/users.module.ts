@@ -8,8 +8,11 @@ import { Profile } from "../profile/profile.entity";
 
 @Module({
   controllers: [UsersController],
-  providers: [UsersService],
+  providers: [UsersService ],
   exports: [UsersService],
-  imports: [TypeOrmModule.forFeature([User, Profile])]
+  imports: [
+    TypeOrmModule.forFeature([User, Profile]),
+    forwardRef(() => AuthModule)
+  ]
 })
 export class UserModule {}

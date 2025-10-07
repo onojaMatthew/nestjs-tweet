@@ -24,23 +24,23 @@ const ENV = process.env.NODE_ENV;
       isGlobal: true,
       load: [appConfig, databaseConfig],
       envFilePath: !ENV ? ".env" : `.env.${ENV.trim()}`,
-      // validationSchema: envValidation 
+      validationSchema: envValidation 
     }),
     TypeOrmModule.forRootAsync({
-    imports: [ConfigModule],
-    inject: [ConfigService],
-    useFactory: (configService: ConfigService) => ({
-      type: "postgres",
-      autoLoadEntities: configService.get<boolean>("database.auto_load"),
-      synchronize: configService.get<boolean>("database.sync"),
-      host: configService.get<string>("database.host"),// "localhost",
-      port: +configService.get("database.port"),
-      username: configService.get<string>("database.username"),
-      password: configService.get<string>("database.password"),
-      database: configService.get<string>("database.name")
-    })
-  }), ProfileModule, HashtagModule, PaginationModule],
-  controllers: [AppController],
-  providers: [AppService],
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        type: "postgres",
+        autoLoadEntities: configService.get<boolean>("database.auto_load"),
+        synchronize: configService.get<boolean>("database.sync"),
+        host: configService.get<string>("database.host"),
+        port: +configService.get("database.port"),
+        username: configService.get<string>("database.username"),
+        password: configService.get<string>("database.password"),
+        database: configService.get<string>("database.name")
+      })
+    }), ProfileModule, HashtagModule, PaginationModule],
+    controllers: [AppController],
+    providers: [AppService],
 })
 export class AppModule {}
